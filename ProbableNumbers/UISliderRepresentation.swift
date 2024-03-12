@@ -18,7 +18,7 @@ struct UISliderRepresentation: UIViewRepresentable {
         slider.maximumValue = 100
         
         slider.thumbTintColor = UIColor(
-            red: 255,
+            red: 155,
             green: 0,
             blue: 0,
             alpha: context.coordinator.calculateAlpha(value, target: target)
@@ -56,9 +56,8 @@ extension UISliderRepresentation {
             
             value = Int(sender.value)
             
-            
             sender.thumbTintColor = UIColor(
-                red: 255,
+                red: 155,
                 green: 0,
                 blue: 0,
                 alpha: CGFloat(calculateAlpha(value, target: target))
@@ -77,7 +76,7 @@ extension UISliderRepresentation {
             let roundAlpha = Double(round(100 * alpha) / 100)
             
             print(roundAlpha)
-            return roundAlpha
+            return 1 - roundAlpha
         }
     }
 }

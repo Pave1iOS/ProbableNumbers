@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var value: Int = 20
     @State private var target = Int.random(in: 5...95)
-    @State var isPresented = false
+    
+    @State private var isPresented = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -28,9 +29,7 @@ struct ContentView: View {
                 Text("100")
             }
             .padding([.leading, .trailing], 15)
-        
-            Text(value.formatted()) // test
-            
+                    
             Button("Проверь меня!") {
                 isPresented = true
             }
@@ -47,7 +46,10 @@ struct ContentView: View {
             }
         }
     }
-    
+}
+
+// MARK: Private func
+private extension ContentView {
     private func randomNumber() -> Int {
         return Int.random(in: 5...95)
     }
@@ -57,9 +59,6 @@ struct ContentView: View {
         return 100 - difference
     }
 }
-
-
-
 
 #Preview {
     ContentView()
