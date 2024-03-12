@@ -16,9 +16,11 @@ struct UISliderRepresentation: UIViewRepresentable {
         let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 100
+        slider.minimumTrackTintColor = .blue
+        slider.maximumTrackTintColor = .darkGray
         
         slider.thumbTintColor = UIColor(
-            red: 155,
+            red: 255,
             green: 0,
             blue: 0,
             alpha: context.coordinator.calculateAlpha(value, target: target)
@@ -57,7 +59,7 @@ extension UISliderRepresentation {
             value = Int(sender.value)
             
             sender.thumbTintColor = UIColor(
-                red: 155,
+                red: 255,
                 green: 0,
                 blue: 0,
                 alpha: CGFloat(calculateAlpha(value, target: target))
