@@ -67,7 +67,12 @@ extension UISliderRepresentation {
         }
                 
         func calculateAlpha() -> Double {
-            Double(computeScore()) / 100
+            
+            let value = Double(computeScore()) / 100
+            let roundValue = round(value * 10) / 10
+            
+            print(roundValue)
+            return roundValue
         }
         
         private func computeScore() -> Int {
