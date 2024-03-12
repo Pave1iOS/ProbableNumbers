@@ -13,6 +13,8 @@ struct ContentView: View {
     
     @State private var isPresented = false
     
+    let storageManager = StorageManager.shared
+    
     var body: some View {
         VStack(spacing: 20) {
             
@@ -35,28 +37,16 @@ struct ContentView: View {
             }
             .alert("You score", isPresented: $isPresented, actions: {
                 Button("OK") {
-                    target = randomNumber()
+                    target = storageManager.randomNumber()
                 }
             }, message: {
-                Text(computeScore().formatted())
+                Text(storageManager.computeScore(value: value, target: target).formatted())
             })
             
             Button("Начать заново") {
-                target = randomNumber()
+                target = storageManager.randomNumber()
             }
         }
-    }
-}
-
-// MARK: Private func
-private extension ContentView {
-    func randomNumber() -> Int {
-        return Int.random(in: 5...95)
-    }
-    
-    func computeScore() -> Int {
-        let difference = abs(value - target)
-        return 100 - difference
     }
 }
 
