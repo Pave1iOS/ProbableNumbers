@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var value = 20
+    @State private var target = Int.random(in: 5...95)
+    
     var body: some View {
         VStack(spacing: 20) {
             
-            Text("Подвиньте слайдер как можно ближе к \("ЧИСЛО")")
+            Text("Подвиньте слайдер как можно ближе к \(target)")
                 .font(.system(size: 16))
             .padding([.leading, .trailing], 10)
         
-            // Slider
+            UISliderRepresentation(value: $value, target: $target)
+                .padding([.leading, .trailing], 10)
+                
+            Text(value.formatted())
             
             Button("Проверь меня!") {
-                
+                target = Int.random(in: 5...95)
             }
             
             Button("Начать заного") {
@@ -27,6 +33,8 @@ struct ContentView: View {
         }
     }
 }
+
+
 
 #Preview {
     ContentView()
