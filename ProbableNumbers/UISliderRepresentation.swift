@@ -17,6 +17,13 @@ struct UISliderRepresentation: UIViewRepresentable {
         slider.minimumValue = 0
         slider.maximumValue = 100
         
+        slider.thumbTintColor = UIColor(
+            red: 255,
+            green: 0,
+            blue: 0,
+            alpha: context.coordinator.calculateAlpha(value, target: target)
+        )
+        
         slider.addTarget(
             context.coordinator,
             action: #selector(Coordinator.valueDidChange),
@@ -58,7 +65,7 @@ extension UISliderRepresentation {
             )
         }
         
-        private func calculateAlpha(_ value: Int, target: Int) -> Double {
+        func calculateAlpha(_ value: Int, target: Int) -> Double {
             var alpha: Double = 0
             
             if value > target {
