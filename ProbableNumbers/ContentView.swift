@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var value: Int = 20
+    @State private var value = 20
     @State private var target = Int.random(in: 5...95)
     
     @State private var isPresented = false
