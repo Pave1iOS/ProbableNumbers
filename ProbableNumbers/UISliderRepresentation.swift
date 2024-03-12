@@ -54,27 +54,23 @@ extension UISliderRepresentation {
                 red: 255,
                 green: 0,
                 blue: 0,
-                alpha: CGFloat(calculateAlpha(value, secondValue: target))
+                alpha: CGFloat(calculateAlpha(value, target: target))
             )
         }
         
-        private func computerScore() -> Int {
-            let difference = abs(target - value)
-                return 100 - difference
-        }
-        
-        private func calculateAlpha(_ firstValue: Int, secondValue: Int) -> Float {
-            var alpha: Float = 100
+        private func calculateAlpha(_ value: Int, target: Int) -> Double {
+            var alpha: Double = 0
             
-            if firstValue > secondValue {
-                alpha = 1 - ((Float(firstValue) - Float(secondValue)) / 100)
-                print(alpha)
+            if value > target {
+                alpha = (Double(value) - Double(target)) / 100
             } else {
-                alpha = 1 - ((Float(secondValue) - Float(firstValue)) / 100)
-                print(alpha)
+                alpha = (Double(target) - Double(value)) / 100
             }
             
-            return alpha
+            let roundAlpha = Double(round(100 * alpha) / 100)
+            
+            print(roundAlpha)
+            return roundAlpha
         }
     }
 }
