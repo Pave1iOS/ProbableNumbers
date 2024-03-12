@@ -29,7 +29,7 @@ struct ContentView: View {
                 Text("100")
             }
             .padding([.leading, .trailing], 15)
-                    
+
             Button("Проверь меня!") {
                 isPresented = true
             }
@@ -50,11 +50,11 @@ struct ContentView: View {
 
 // MARK: Private func
 private extension ContentView {
-    private func randomNumber() -> Int {
+    func randomNumber() -> Int {
         return Int.random(in: 5...95)
     }
     
-    private func computeScore() -> Int {
+    func computeScore() -> Int {
         let difference = abs(value - target)
         return 100 - difference
     }

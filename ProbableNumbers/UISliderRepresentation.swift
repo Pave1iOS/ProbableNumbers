@@ -23,7 +23,7 @@ struct UISliderRepresentation: UIViewRepresentable {
             red: 255,
             green: 0,
             blue: 0,
-            alpha: context.coordinator.calculateAlpha(value, target: target)
+            alpha: context.coordinator.calculateAlpha()
         )
         
         slider.addTarget(
@@ -62,23 +62,17 @@ extension UISliderRepresentation {
                 red: 255,
                 green: 0,
                 blue: 0,
-                alpha: CGFloat(calculateAlpha(value, target: target))
+                alpha: CGFloat(calculateAlpha())
             )
         }
+                
+        func calculateAlpha() -> Double {
+            Double(computeScore()) / 100
+        }
         
-        func calculateAlpha(_ value: Int, target: Int) -> Double {
-            var alpha: Double = 0
-            
-            if value > target {
-                alpha = (Double(value) - Double(target)) / 100
-            } else {
-                alpha = (Double(target) - Double(value)) / 100
-            }
-            
-            let roundAlpha = Double(round(100 * alpha) / 100)
-            
-            print(roundAlpha)
-            return 1 - roundAlpha
+        private func computeScore() -> Int {
+            let difference = abs(value - target)
+            return 100 - difference
         }
     }
 }
