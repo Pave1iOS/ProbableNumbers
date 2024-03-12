@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var value: Int = 20
     @State private var target = Int.random(in: 5...95)
+    @State var isPresented = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -17,22 +18,46 @@ struct ContentView: View {
             Text("Подвиньте слайдер как можно ближе к \(target)")
                 .font(.system(size: 16))
             .padding([.leading, .trailing], 10)
-        
-            UISliderRepresentation(value: $value, target: $target)
-                .padding([.leading, .trailing], 10)
+            
+            HStack {
+                Text("0")
                 
-            Text(value.formatted())
+                UISliderRepresentation(value: $value, target: $target)
+                    .padding([.leading, .trailing], 10)
+                
+                Text("100")
+            }
+            .padding([.leading, .trailing], 15)
+        
+            Text(value.formatted()) // test
             
             Button("Проверь меня!") {
-                target = Int.random(in: 5...95)
+                isPresented = true
             }
+            .alert("You score", isPresented: $isPresented, actions: {
+                Button("OK") {
+                    target = randomNumber()
+                }
+            }, message: {
+                Text(computeScore().formatted())
+            })
             
-            Button("Начать заного") {
-                
+            Button("Начать заново") {
+                target = randomNumber()
             }
         }
     }
+    
+    private func randomNumber() -> Int {
+        return Int.random(in: 5...95)
+    }
+    
+    private func computeScore() -> Int {
+        let difference = abs(value - target)
+        return 100 - difference
+    }
 }
+
 
 
 
