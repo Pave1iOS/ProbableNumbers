@@ -9,13 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 20) {
+            
+            Text("Подвиньте слайдер как можно ближе к \("ЧИСЛО")")
+                .font(.system(size: 16))
+            .padding([.leading, .trailing], 10)
+        
+            // Slider
+            
+            Button("Проверь меня!") {
+                
+            }
+            
+            Button("Начать заного") {
+                
+            }
         }
-        .padding()
     }
 }
 
